@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LMS Instructor Dashboard</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="app">
+  <!-- Topbar with hamburger and user menu -->
+  <header class="topbar" role="banner">
+    <button id="menuToggle" class="hide-desktop" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+      <span class="sr-only">Open sidebar</span>
+      &#9776;
+    </button>
+    <span class="app-title">LMS Instructor</span>
+    <nav class="user-menu" aria-label="User menu">
+      <button class="user-avatar" aria-haspopup="true" aria-label="User menu">U</button>
+    </nav>
+  </header>
+  <div class="app-main">
+    <!-- Sidebar navigation -->
+    <nav id="sidebar" class="sidebar" aria-label="Main menu">
+      <ul>
+        <li><a href="#" tabindex="0">Dashboard</a></li>
+        <li><a href="#" tabindex="0">Assignments</a></li>
+        <li><a href="#" tabindex="0">Materials</a></li>
+        <li><a href="#" tabindex="0">Messages</a></li>
+        <li><a href="#" tabindex="0">Profile</a></li>
+      </ul>
+    </nav>
+    <!-- Main content area -->
+    <main class="content" tabindex="-1">
+      <h1>Welcome, Instructor!</h1>
+      <div class="card-grid">
+        <section class="card">Card 1</section>
+        <section class="card">Card 2</section>
+        <section class="card">Card 3</section>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Assignment</th><th>Due</th></tr></thead>
+          <tbody><tr><td>Example</td><td>2025-08-13</td></tr></tbody>
+        </table>
+      </div>
+      <img src="example.jpg" alt="Example" />
+    </main>
+  </div>
+  <div id="sidebar-backdrop" class="sidebar-backdrop hide-desktop" tabindex="-1" aria-hidden="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
