@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../config/database.php';
 if (!isset($conn)) {
     $conn = new mysqli('localhost', 'root', '', 'lms_university');
     if ($conn->connect_error) {
-        die('Kết nối CSDL thất bại: ' . $conn->connect_error);
+        die('Database connection failed: ' . $conn->connect_error);
     }
 }
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -23,7 +23,7 @@ if (!$result || mysqli_num_rows($result) == 0) {
     exit();
 }
 $course = mysqli_fetch_assoc($result);
-// Lấy danh sách giảng viên (role = 'instructor')
+
 $instructors = [];
 $q = mysqli_query($conn, "SHOW COLUMNS FROM users LIKE 'specialty'");
 $has_specialty = ($q && mysqli_num_rows($q) > 0);
@@ -62,7 +62,7 @@ if (isset($_POST['edit_course'])) {
         $result = mysqli_query($conn, $sql);
         $course = mysqli_fetch_assoc($result);
     } else {
-        $error = 'Cập nhật khóa học thất bại!';
+        $error = 'Course update failed!';
     }
 }
 ?>

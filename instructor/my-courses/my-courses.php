@@ -71,7 +71,6 @@ if (!$result) {
 <body>
 <?php include '../../instructor/header_instructor.php'; ?>
 
-<!-- header và sidebar đã được include ở trên, phần giao diện bị xóa theo yêu cầu -->
 <div style="margin-left:220px">
 <div class="px-4 py-4">
     <div class="d-flex align-items-center justify-content-between mb-4">

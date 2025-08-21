@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     if (empty($username) || empty($email) || empty($password)) {
-        $error = "Vui lòng nhập đầy đủ thông tin.";
+        $error = "Please enter complete information.";
     } else {
         $conn = new mysqli('localhost', 'root', '', 'lms_university');
         if ($conn->connect_error) {
-            die('Kết nối CSDL thất bại: ' . $conn->connect_error);
+            die('Database connection failed: ' . $conn->connect_error);
         }
         $hashed = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, 'student')");
@@ -35,17 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm sinh viên</title>
+    <title>Add students</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body style="background:#f6f8fa;">
 <div class="container py-4">
-    <h2 class="fw-bold mb-4">Thêm sinh viên</h2>
+    <h2 class="fw-bold mb-4">Add students</h2>
     <?php if ($error): ?><div class="alert alert-danger"><?php echo $error; ?></div><?php endif; ?>
     <form method="post" class="bg-white p-4 rounded shadow-sm" style="max-width:500px;">
         <div class="mb-3">
-            <label class="form-label">Tên đăng nhập</label>
+            <label class="form-label">Username</label>
             <input type="text" name="username" class="form-control" required>
         </div>
         <div class="mb-3">
@@ -53,11 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="email" name="email" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Mật khẩu</label>
+            <label class="form-label">Password</label>
             <input type="password" name="password" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-success">Thêm sinh viên</button>
-        <a href="manage_student.php" class="btn btn-secondary ms-2">Quay lại</a>
+        <button type="submit" class="btn btn-success">Add students</button>
+        <a href="manage_student.php" class="btn btn-secondary ms-2">Cancle</a>
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

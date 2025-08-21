@@ -20,7 +20,7 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
     $target_file = $target_dir . time() . '_' . $file_name;
     if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
         $db_file = basename($target_file);
-        // Ghi nhận nộp bài
+        // Record submission
         $stmt = $conn->prepare("REPLACE INTO assignment_submissions (assignment_id, student_id, file_path, submitted_at) VALUES (?, ?, ?, NOW())");
         $stmt->bind_param('iis', $assignment_id, $user_id, $db_file);
         $stmt->execute();

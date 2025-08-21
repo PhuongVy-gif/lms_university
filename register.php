@@ -21,17 +21,17 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $role = 'student';
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Kiểm tra email đã tồn tại chưa
+// Check if email exists
     $stmt = $pdo->prepare("SELECT email FROM users WHERE email = ?");
     $stmt->execute([$email]);
     if ($stmt->fetch()) {
         $message = "Email already exists. Please use a different email.";
     } else {
-        // Thêm người dùng mới
+       // Add new user
         $stmt = $pdo->prepare("INSERT INTO users (username, email, password, role, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?)");
         try {
             $stmt->execute([$username, $email, $hashed_password, $role, $first_name, $last_name]);
-            // Tự động đăng nhập sau khi đăng ký
+           // Auto login after registration
             $user_id = $pdo->lastInsertId();
             $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $username;

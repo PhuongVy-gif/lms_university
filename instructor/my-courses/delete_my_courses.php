@@ -6,7 +6,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'instructor') {
 }
 $conn = new mysqli('localhost', 'root', '', 'lms_university');
 if ($conn->connect_error) {
-    die('Kết nối CSDL thất bại: ' . $conn->connect_error);
+    die('Database connection failed: ' . $conn->connect_error);
 }
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id > 0) {
